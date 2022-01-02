@@ -9,50 +9,37 @@ const again = document.querySelector('.btn.again');
 const guessInput = document.querySelector('.guess');
 
 
-
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-// let score = 20;
 
-console.log(String(secretNumber));
+
+// console.log(String(secretNumber));
+
 let scoreNumber = 20;
 let highscoreNumber = 0;
 
 check.addEventListener('click', () => {
   let guess = Number(guessInput.value);
 
-/* Kiedy nie ma żadnego input*/
+  /* Kiedy nie ma żadnego input*/
   if (!guess) {
     message.textContent = 'No number!';
 
-  //  Kiedy gracz wygrywa
+    //  Kiedy gracz wygrywa
   } else if (guess === secretNumber) {
     message.textContent = `Correct number!`;
-      body.style.backgroundColor = `#60b347`;
-    number.style.width = `30rem`
+    body.style.backgroundColor = `#60b347`;
+    number.style.width = `30rem`;
     number.textContent = String(secretNumber);
 
-    if(scoreNumber > highscoreNumber){
+    if (scoreNumber > highscoreNumber) {
       highscoreNumber = scoreNumber;
       highscore.textContent = highscoreNumber;
     }
 
-  // Kiedy liczba jest za duża
-  } else if (guess > secretNumber) {
+    // Kiedy liczba jest inna
+  } else if (guess !== secretNumber) {
     if (scoreNumber > 1) {
-      message.textContent = `Too high`;
-      scoreNumber--;
-      score.textContent = String(scoreNumber);
-    } else {
-      message.textContent = `You lost the game!`;
-      score.textContent = '0';
-    }
-
-
-  //  Kiedy liczba jest za mała
-  } else if (guess < secretNumber) {
-
-    if (scoreNumber > 1) {
-      message.textContent = `Too low`;
+      message.textContent = guess > secretNumber ? `Too high` : `Too low`;
       scoreNumber--;
       score.textContent = String(scoreNumber);
     } else {
@@ -63,15 +50,15 @@ check.addEventListener('click', () => {
 });
 
 //Przycisk resetu
-again.addEventListener('click', () =>{
+again.addEventListener('click', () => {
 
   number.style.width = `15rem`;
   message.textContent = `Start guessing...`;
   number.textContent = `?`;
   score.textContent = `20`;
   body.style.backgroundColor = `#222`;
-  guessInput.value = ' ' ;
+  guessInput.value = ' ';
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   scoreNumber = 20;
 
-})
+});
