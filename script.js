@@ -15,21 +15,26 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 console.log(String(secretNumber));
 let scoreNumber = 20;
+let highscoreNumber = 0;
 
 check.addEventListener('click', () => {
-  const guess = Number(guessInput.value);
+  let guess = Number(guessInput.value);
 
-/* Kiedy nie ma żadnego inputu*/
+/* Kiedy nie ma żadnego input*/
   if (!guess) {
     message.textContent = 'No number!';
 
   //  Kiedy gracz wygrywa
   } else if (guess === secretNumber) {
     message.textContent = `Correct number!`;
-    // highscore.textContent = String(scoreNumber);
-    body.style.backgroundColor = `#60b347`;
+      body.style.backgroundColor = `#60b347`;
     number.style.width = `30rem`
     number.textContent = String(secretNumber);
+
+    if(scoreNumber > highscoreNumber){
+      highscoreNumber = scoreNumber;
+      highscore.textContent = highscoreNumber;
+    }
 
   // Kiedy liczba jest za duża
   } else if (guess > secretNumber) {
@@ -63,10 +68,10 @@ again.addEventListener('click', () =>{
   number.style.width = `15rem`;
   message.textContent = `Start guessing...`;
   number.textContent = `?`;
-  score.textContent = scoreNumber;
+  score.textContent = `20`;
   body.style.backgroundColor = `#222`;
-  guessInput.textContent = ``;
+  guessInput.value = ' ' ;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  scoreNumber = 20
+  scoreNumber = 20;
 
 })
