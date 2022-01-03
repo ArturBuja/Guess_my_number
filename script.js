@@ -17,7 +17,16 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let scoreNumber = 20;
 let highscoreNumber = 0;
 
-check.addEventListener('click', () => {
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    checkNumber();
+  }
+});
+
+check.addEventListener('click', checkNumber);
+
+function checkNumber() {
+
   let guess = Number(guessInput.value);
 
   /* Kiedy nie ma żadnego input*/
@@ -47,7 +56,8 @@ check.addEventListener('click', () => {
       score.textContent = '0';
     }
   }
-});
+}
+
 
 //Przycisk resetu
 again.addEventListener('click', () => {
@@ -57,7 +67,7 @@ again.addEventListener('click', () => {
   number.textContent = `?`;
   score.textContent = `20`;
   body.style.backgroundColor = `#222`;
-  guessInput.value = ' ';
+  guessInput.value = ``;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   scoreNumber = 20;
 
